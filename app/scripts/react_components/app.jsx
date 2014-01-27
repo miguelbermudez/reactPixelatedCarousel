@@ -1,10 +1,10 @@
 /** @jsx React.DOM */
 
 var React   = require('react');
-var PxImage = require('./pxImage.jsx');
+var Carousel = require('./carousel.jsx');
+
+var artImages = ["1998.412.3.jpg", "DP130999.jpg", "DP133010.jpg", "DP220030.jpg", "DP259921.jpg", "DT1491.jpg", "DT1494.jpg", "DT1502.jpg", "DT1937.jpg", "DT1941.jpg"];
 
 React.renderComponent(
-  <PxImage steps="2" min="1" max="50" width="760" height="428" url="images/DP220030.jpg" />,
-  document.getElementById('demo')
+  <Carousel data={artImages} />, document.getElementById('demo')
 );
-
