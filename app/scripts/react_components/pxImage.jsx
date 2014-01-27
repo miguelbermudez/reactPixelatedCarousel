@@ -62,10 +62,14 @@ module.exports = React.createClass({
     w = img.width * size;
     h = img.height * size;
 
-    //console.log('size: ', size);
-    //console.log('w: ',w,'h: ',h);
-    //console.log('img: ', img.width,img.height);
-    //console.log('canvas: ', canvas.width,canvas.height);
+    //console.log('canvas: ', this.state.canvasid);
+    //console.log('\t',this.state.canvas);
+    //console.log('\tsize: ', size);
+    //console.log('\tsizew: ',w,'h: ',h);
+    //console.log('\tsizeimg: ', img.width,img.height);
+    //console.log('\tsizecanvas: ', canvas.width,canvas.height);
+    //console.log('\taspectfit: ', aspectFit.width,aspectFit.height);
+    //console.log('\n\n');
 
     if (w > canvas.width) w = canvas.width;
     if (h > canvas.height) h = canvas.height;
