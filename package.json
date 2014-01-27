@@ -18,7 +18,9 @@
     "load-grunt-tasks": "~0.2.1",
     "time-grunt": "~0.2.5",
     "envify": "~0.2.0",
-    "react": "~0.8.0"
+    "react": "~0.8.0",
+    "grunt-contrib-compass": "~0.7.1",
+    "grunt-autoprefixer": "~0.6.5"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"

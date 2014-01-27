@@ -40,6 +40,15 @@ module.exports = function(grunt) {
         files: '<%= config.src %>/scripts/**/*.jsx',
         tasks: ['browserify']
       },
+
+      compass: {
+        files: ['<%= config.src %>/styles/**/*.{scss,sass}'],
+        tasks: ['compass:server', 'autoprefixer'],
+        options: {
+          livereload: true
+        }
+      },
+
       livereload: {
         options: {
           livereload: '<%=connect.options.livereload %>'
@@ -81,12 +90,56 @@ module.exports = function(grunt) {
       ],
     },
 
+    autoprefixer: {
+      options: {
+        browsers: ['last 1 version']
+      },
+      dist: {
+        files: [{
+          expand: true,
+          cwd: '.tmp/stylesheets/',
+          src: '{,*/}*.css',
+          dest: '.tmp/stylesheets/'
+        }]
+      }
+    },
+
+    compass: {
+      options: {
+        sassDir: '<%= config.src %>/styles',
+        cssDir: '.tmp/styles',
+        generatedImagesDir: '.tmp/images/generated',
+        imagesDir: '<%= config.src %>/images',
+        javascriptsDir: '<%= config.src %>/scripts',
+        fontsDir: '<%= config.src %>/fonts',
+        importPath: '<%= config.src %>/components',
+        httpImagesPath: '/images',
+        httpGeneratedImagesPath: '/images/generated',
+        httpFontsPath: '/styles/fonts',
+        relativeAssets: false,
+        assetCacheBuster: false,
+        raw: 'Sass::Script::Number.precision = 10\n'
+      },
+      dist: {
+        options: {
+          generatedImagesDir: '<%= config.dist %>/images/generated'
+        }
+      },
+      server: {
+        options: {
+          debugInfo: true
+        }
+      }
+    }
+
   });
+
 
   grunt.registerTask('serve', function (target) {
     var tasks = {
       'default': [
         'browserify',
+        'compass:server',
         'connect:livereload',
         'watch'
       ]
