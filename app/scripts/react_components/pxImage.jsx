@@ -79,9 +79,10 @@ module.exports = React.createClass({
 
   },
 
+  // http://stackoverflow.com/a/14731922/1084371
   calcAspectRatioFit: function(img, canvas) {
     var srcWidth = img.width;
-    var srcHeight = img.width;
+    var srcHeight = img.height;
     var maxHeight = canvas.height;
     var maxWidth = canvas.width;
     var ratio = [maxWidth / srcWidth, maxHeight / srcHeight];
@@ -89,7 +90,8 @@ module.exports = React.createClass({
     //ratio = Math.min(ratio[0], ratio[1]); // min for aspect fitting
     ratio = Math.max(ratio[0], ratio[1]); // max for aspect filling
 
-    return { width: Math.ceil(srcWidth*ratio), height:Math.ceil(srcHeight*ratio) };
+    //return { width: Math.ceil(srcWidth*ratio), height:Math.ceil(srcHeight*ratio) };
+    return { width: srcWidth*ratio, height:srcHeight*ratio };
   },
 
   genUnique: function(prefix) {
