@@ -3,14 +3,13 @@ var React = require('react');
 
 module.exports = React.createClass({
   getInitialState: function() {
-    var uniqId = this.genUnique('canvas-id-');
     var img = new Image(); 
 
     return {
       canvas: null,
       ctx: null,
       aspectFit: null,
-      canvasid: uniqId,
+      canvasid: null,
       min: parseInt(this.props.min,10),
       max: parseInt(this.props.max,10),
       step: parseInt(this.props.steps,10),
@@ -19,6 +18,10 @@ module.exports = React.createClass({
       srcimg: img,
       inTransition: false
     };
+  },
+
+  componentWillMount: function() {
+    this.genUnique('canvas-id-');
   },
 
   componentDidMount: function() {
@@ -86,8 +89,11 @@ module.exports = React.createClass({
   },
 
   genUnique: function(prefix) {
-    var count = 0;
-    return prefix + count++;
+    // http://stackoverflow.com/a/8084248/1084371 - amazing!
+    var uniqId =  (Math.random() +1).toString(36).substr(2, 5);
+    var id = prefix + uniqId;
+    this.setState({canvasid: id});
+    return id;
   },
 
   handleMouseOver: function() {
